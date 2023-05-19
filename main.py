@@ -26,7 +26,7 @@ class main(App):
                 exit()
         fl1=FloatLayout(size_hint=(.99,.99))
         bl1=BoxLayout(orientation='vertical',size_hint=(1,.25),pos_hint={"center_x":.5,"center_y":.3},spacing=30,padding=10)
-        v1=Video(source="vid.mp4",size_hint=(1,1))
+        v1=Video(source="Arknights EP - [Renegade].mp4",size_hint=(1,1))
         bth1=Button(text='ok',size_hint=(.05, .01),pos_hint={"center_x":.5,"center_y":.4},opacity=0.75)
         bth1.bind(on_press=exeting)
         ti1=TextInput(size_hint=(.5, .01),pos_hint={"center_x":.5,"center_y":.5},multiline=False,opacity=0.75)
